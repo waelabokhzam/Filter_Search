@@ -219,6 +219,7 @@ hover_logo.addEventListener("mouseout",function(){
 
 function filter_product(value){
   let button=document.querySelectorAll(".btn_vlaue");
+  
   button.forEach((btn)=>{
     if(value.toUpperCase() ==btn.textContent.toUpperCase())
     {
@@ -234,7 +235,7 @@ function filter_product(value){
       card.classList.remove("hide");
     }
     else{
-      if(card.classList.contains(value.toLowerCase())){
+      if(card.classList.contains(value)){
         card.classList.remove("hide");
       }
       else{
@@ -273,6 +274,7 @@ function filterDropdown(value) {
           li.addEventListener("click", () => {
               input.value = item;
               dropdownList.style.display = "none"; // Hide dropdown after selection
+              filter_product(item);
           });
           dropdownList.appendChild(li);
       });
@@ -297,6 +299,14 @@ document.addEventListener("click", function(event) {
 input.addEventListener("click", function() {
   dropdownList.style.display = "block";
   filterDropdown(input.value); // Filter items based on current input value
+});
+let icon_up = document.querySelector(".icon_up");
+icon_up.addEventListener("click",function(){
+  
+  window.scrollTo({
+    top: 0, 
+    behavior: "smooth"
+  });
 });
 window.onload=()=>{
   filter_product("all");
